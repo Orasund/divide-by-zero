@@ -5888,7 +5888,6 @@ var $author$project$Level$varTrack = _List_fromArray(
 		goal: $author$project$Expression$DivisionByZero,
 		inputs: _List_fromArray(
 			[
-				$author$project$Expression$NumberSymbol(0),
 				$author$project$Expression$OpSymbol($author$project$Expression$TimesOp),
 				$author$project$Expression$OpSymbol($author$project$Expression$DividedOp)
 			]),
@@ -6127,6 +6126,14 @@ var $author$project$Main$update = F2(
 		}
 	});
 var $author$project$Main$ContinuePressed = {$: 'ContinuePressed'};
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $Orasund$elm_layout$Layout$alignAtCenter = A2($elm$html$Html$Attributes$style, 'align-items', 'center');
@@ -6165,6 +6172,12 @@ var $Orasund$elm_layout$Layout$el = F2(
 				[content]));
 	});
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$Attributes$name = $elm$html$Html$Attributes$stringProperty('name');
+var $elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
 var $elm$core$Basics$round = _Basics_round;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
@@ -6175,14 +6188,6 @@ var $Orasund$elm_layout$Layout$text = F2(
 			attrs,
 			$elm$html$Html$text(content));
 	});
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -6325,11 +6330,6 @@ var $elm$html$Html$Attributes$href = function (url) {
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
-var $elm$virtual_dom$VirtualDom$node = function (tag) {
-	return _VirtualDom_node(
-		_VirtualDom_noScript(tag));
-};
-var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
 var $elm$html$Html$Attributes$rel = _VirtualDom_attribute('rel');
 var $author$project$View$stylesheet = A3(
 	$elm$html$Html$node,
@@ -6674,6 +6674,15 @@ var $author$project$Main$view = function (model) {
 		_List_fromArray(
 			[
 				$author$project$View$stylesheet,
+				A3(
+				$elm$html$Html$node,
+				'meta',
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$name('viewport'),
+						A2($elm$html$Html$Attributes$attribute, 'content', 'width=device-width, initial-scale=1.0,user-scalable=no')
+					]),
+				_List_Nil),
 				A2(
 				$Orasund$elm_layout$Layout$column,
 				A2(
