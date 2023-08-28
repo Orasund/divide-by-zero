@@ -140,8 +140,7 @@ varTrack =
       , goal = Number 40
       }
     , { inputs =
-            [ NumberSymbol 0
-            , OpSymbol TimesOp
+            [ OpSymbol TimesOp
             , OpSymbol DividedOp
             ]
       , withVar = True
