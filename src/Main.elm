@@ -172,7 +172,7 @@ view model =
                     False
     in
     [ View.stylesheet
-    , Html.node "meta" [ Html.Attributes.name "viewport", Html.Attributes.attribute "content" "width=device-width, user-scalable=no" ] []
+    , Html.node "meta" [ Html.Attributes.name "viewport", Html.Attributes.attribute "content" "width=432, user-scalable=no" ] []
     , [ (if model.levelSelect == False then
             if model.game.expression == DivisionByZero then
                 "COMPUTING"
