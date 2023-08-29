@@ -91,7 +91,7 @@ viewButtons args model =
             [ Html.Attributes.class "secondary"
             , Html.Attributes.disabled args.won
             ]
-            { label = "LVL"
+            { label = "LEVEL"
             , onPress =
                 LevelSelectPressed
                     |> Just
@@ -100,7 +100,7 @@ viewButtons args model =
             [ Html.Attributes.class "primary"
             , Html.Attributes.disabled args.won
             ]
-            { label = "DEL"
+            { label = "DELETE"
             , onPress =
                 DeletePressed
                     |> Just

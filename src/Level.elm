@@ -48,7 +48,6 @@ darkSide =
       }
     , { inputs =
             [ OpSymbol TimesOp
-            , OpSymbol TimesOp
             , NumberSymbol 0
             ]
       , withVar = True

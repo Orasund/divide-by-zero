@@ -1,6 +1,6 @@
 module View exposing (..)
 
-import Expression exposing (Operator(..), Symbol(..))
+import Expression exposing (Expression(..), Operator(..), Symbol(..))
 import Game exposing (Game)
 import Html exposing (Attribute, Html)
 import Html.Attributes
@@ -9,13 +9,30 @@ import Layout
 
 viewInput : Game -> Symbol -> String
 viewInput game symbol =
-    if symbol == VarSymbol then
-        game.var
-            |> Maybe.map Expression.toString
-            |> Maybe.withDefault (Expression.symbolToString symbol)
+    case symbol of
+        VarSymbol ->
+            game.var
+                |> Maybe.map Expression.toString
+                |> Maybe.withDefault (Expression.symbolToString symbol)
 
-    else
-        Expression.symbolToString symbol
+        OpSymbol TimesOp ->
+            case game.expression of
+                Op TimesOp _ ->
+                    Expression.symbolToString symbol ++ " → " ++ Expression.symbolToString (OpSymbol PowOp)
+
+                _ ->
+                    Expression.symbolToString symbol
+
+        OpSymbol DividedOp ->
+            case game.expression of
+                Op DividedOp _ ->
+                    Expression.symbolToString symbol ++ " → " ++ Expression.symbolToString (OpSymbol RootOp)
+
+                _ ->
+                    Expression.symbolToString symbol
+
+        _ ->
+            Expression.symbolToString symbol
 
 
 overlay :

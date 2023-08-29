@@ -5964,7 +5964,6 @@ var $author$project$Level$darkSide = _Utils_ap(
 			inputs: _List_fromArray(
 				[
 					$author$project$Expression$OpSymbol($author$project$Expression$TimesOp),
-					$author$project$Expression$OpSymbol($author$project$Expression$TimesOp),
 					$author$project$Expression$NumberSymbol(0)
 				]),
 			withVar: true
@@ -6513,10 +6512,44 @@ var $elm$core$List$repeat = F2(
 	});
 var $author$project$View$viewInput = F2(
 	function (game, symbol) {
-		return _Utils_eq(symbol, $author$project$Expression$VarSymbol) ? A2(
-			$elm$core$Maybe$withDefault,
-			$author$project$Expression$symbolToString(symbol),
-			A2($elm$core$Maybe$map, $author$project$Expression$toString, game._var)) : $author$project$Expression$symbolToString(symbol);
+		_v0$3:
+		while (true) {
+			switch (symbol.$) {
+				case 'VarSymbol':
+					return A2(
+						$elm$core$Maybe$withDefault,
+						$author$project$Expression$symbolToString(symbol),
+						A2($elm$core$Maybe$map, $author$project$Expression$toString, game._var));
+				case 'OpSymbol':
+					switch (symbol.a.$) {
+						case 'TimesOp':
+							var _v1 = symbol.a;
+							var _v2 = game.expression;
+							if ((_v2.$ === 'Op') && (_v2.a.$ === 'TimesOp')) {
+								var _v3 = _v2.a;
+								return $author$project$Expression$symbolToString(symbol) + (' → ' + $author$project$Expression$symbolToString(
+									$author$project$Expression$OpSymbol($author$project$Expression$PowOp)));
+							} else {
+								return $author$project$Expression$symbolToString(symbol);
+							}
+						case 'DividedOp':
+							var _v4 = symbol.a;
+							var _v5 = game.expression;
+							if ((_v5.$ === 'Op') && (_v5.a.$ === 'DividedOp')) {
+								var _v6 = _v5.a;
+								return $author$project$Expression$symbolToString(symbol) + (' → ' + $author$project$Expression$symbolToString(
+									$author$project$Expression$OpSymbol($author$project$Expression$RootOp)));
+							} else {
+								return $author$project$Expression$symbolToString(symbol);
+							}
+						default:
+							break _v0$3;
+					}
+				default:
+					break _v0$3;
+			}
+		}
+		return $author$project$Expression$symbolToString(symbol);
 	});
 var $author$project$Main$viewButtons = F2(
 	function (args, model) {
@@ -6574,7 +6607,7 @@ var $author$project$Main$viewButtons = F2(
 										$elm$html$Html$Attributes$disabled(args.won)
 									]),
 								{
-									label: 'LVL',
+									label: 'LEVEL',
 									onPress: $elm$core$Maybe$Just($author$project$Main$LevelSelectPressed)
 								}),
 								A2(
@@ -6585,7 +6618,7 @@ var $author$project$Main$viewButtons = F2(
 										$elm$html$Html$Attributes$disabled(args.won)
 									]),
 								{
-									label: 'DEL',
+									label: 'DELETE',
 									onPress: $elm$core$Maybe$Just($author$project$Main$DeletePressed)
 								})
 							]),
