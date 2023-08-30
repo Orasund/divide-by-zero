@@ -46,11 +46,10 @@ overlay :
 overlay attrs args =
     [ "Divide by Zero" |> Layout.text [ Html.Attributes.style "font-size" "4em", Html.Attributes.style "text-align" "center" ]
     , "A game by Lucas Payr" |> Layout.text [ Html.Attributes.style "font-size" "1.5em" ]
-    , [ "You solved" |> Layout.text []
-      , (toFloat args.solved * 100 / 16 |> round |> String.fromInt)
-            ++ "%"
+    , [ "There are still " |> Layout.text []
+      , (toFloat args.solved - 16 |> round |> String.fromInt)
             |> Layout.text [ Html.Attributes.style "font-size" "4em" ]
-      , "of all levels." |> Layout.text []
+      , "bonus levels." |> Layout.text []
       ]
         |> Layout.column [ Html.Attributes.class "column" ]
     , Layout.textButton [ Html.Attributes.style "width" "initial" ]

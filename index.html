@@ -6276,7 +6276,7 @@ var $author$project$View$overlay = F2(
 						]),
 					_List_fromArray(
 						[
-							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'You solved'),
+							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'There are still '),
 							A2(
 							$Orasund$elm_layout$Layout$text,
 							_List_fromArray(
@@ -6284,8 +6284,8 @@ var $author$project$View$overlay = F2(
 									A2($elm$html$Html$Attributes$style, 'font-size', '4em')
 								]),
 							$elm$core$String$fromInt(
-								$elm$core$Basics$round((args.solved * 100) / 16)) + '%'),
-							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'of all levels.')
+								$elm$core$Basics$round(args.solved - 16))),
+							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'bonus levels.')
 						])),
 					A2(
 					$Orasund$elm_layout$Layout$textButton,
