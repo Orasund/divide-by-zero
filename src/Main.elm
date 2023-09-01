@@ -281,11 +281,13 @@ update msg model =
                             , showOverlay = game.expression == DivisionByZero
                             , solved =
                                 if
-                                    Level.levels
-                                        |> Array.get model.game.level
-                                        |> Maybe.withDefault Level.errorLevel
-                                        |> .goal
-                                        |> (==) game.expression
+                                    model.showDarkSide
+                                        && (Level.levels
+                                                |> Array.get model.game.level
+                                                |> Maybe.withDefault Level.errorLevel
+                                                |> .goal
+                                                |> (==) game.expression
+                                           )
                                 then
                                     model.solved |> Set.insert model.game.level
 
@@ -316,11 +318,13 @@ update msg model =
                             , showOverlay = game.expression == DivisionByZero
                             , solved =
                                 if
-                                    Level.levels
-                                        |> Array.get model.game.level
-                                        |> Maybe.withDefault Level.errorLevel
-                                        |> .goal
-                                        |> (==) game.expression
+                                    model.showDarkSide
+                                        && (Level.levels
+                                                |> Array.get model.game.level
+                                                |> Maybe.withDefault Level.errorLevel
+                                                |> .goal
+                                                |> (==) game.expression
+                                           )
                                 then
                                     model.solved |> Set.insert model.game.level
 

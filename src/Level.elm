@@ -84,18 +84,18 @@ errorTrack =
     , { inputs =
             [ OpSymbol TimesOp
             , OpSymbol DividedOp
-            , NumberSymbol 1
+            , NumberSymbol 2
             ]
       , withVar = True
-      , goal = Number 111
+      , goal = Number 222
       }
     , { inputs =
             [ OpSymbol TimesOp
             , OpSymbol DividedOp
-            , NumberSymbol 1
+            , NumberSymbol 3
             ]
       , withVar = True
-      , goal = Number 100
+      , goal = Number 300
       }
     , { inputs =
             [ OpSymbol TimesOp

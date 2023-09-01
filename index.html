@@ -5909,22 +5909,22 @@ var $author$project$Level$errorTrack = _List_fromArray(
 		withVar: true
 	},
 		{
-		goal: $author$project$Expression$Number(111),
+		goal: $author$project$Expression$Number(222),
 		inputs: _List_fromArray(
 			[
 				$author$project$Expression$OpSymbol($author$project$Expression$TimesOp),
 				$author$project$Expression$OpSymbol($author$project$Expression$DividedOp),
-				$author$project$Expression$NumberSymbol(1)
+				$author$project$Expression$NumberSymbol(2)
 			]),
 		withVar: true
 	},
 		{
-		goal: $author$project$Expression$Number(100),
+		goal: $author$project$Expression$Number(300),
 		inputs: _List_fromArray(
 			[
 				$author$project$Expression$OpSymbol($author$project$Expression$TimesOp),
 				$author$project$Expression$OpSymbol($author$project$Expression$DividedOp),
-				$author$project$Expression$NumberSymbol(1)
+				$author$project$Expression$NumberSymbol(3)
 			]),
 		withVar: true
 	},
@@ -6063,12 +6063,12 @@ var $author$project$Main$update = F2(
 								}(),
 								game: game,
 								showOverlay: _Utils_eq(game.expression, $author$project$Expression$DivisionByZero),
-								solved: _Utils_eq(
+								solved: (model.showDarkSide && _Utils_eq(
 									game.expression,
 									A2(
 										$elm$core$Maybe$withDefault,
 										$author$project$Level$errorLevel,
-										A2($elm$core$Array$get, model.game.level, $author$project$Level$levels)).goal) ? A2($elm$core$Set$insert, model.game.level, model.solved) : model.solved
+										A2($elm$core$Array$get, model.game.level, $author$project$Level$levels)).goal)) ? A2($elm$core$Set$insert, model.game.level, model.solved) : model.solved
 							});
 					}(
 						A2($author$project$Game$addSymbol, input, model.game)),
@@ -6091,12 +6091,12 @@ var $author$project$Main$update = F2(
 								}(),
 								game: game,
 								showOverlay: _Utils_eq(game.expression, $author$project$Expression$DivisionByZero),
-								solved: _Utils_eq(
+								solved: (model.showDarkSide && _Utils_eq(
 									game.expression,
 									A2(
 										$elm$core$Maybe$withDefault,
 										$author$project$Level$errorLevel,
-										A2($elm$core$Array$get, model.game.level, $author$project$Level$levels)).goal) ? A2($elm$core$Set$insert, model.game.level, model.solved) : model.solved
+										A2($elm$core$Array$get, model.game.level, $author$project$Level$levels)).goal)) ? A2($elm$core$Set$insert, model.game.level, model.solved) : model.solved
 							});
 					}(
 						$author$project$Game$deleteInput(model.game)),
@@ -6284,8 +6284,8 @@ var $author$project$View$overlay = F2(
 									A2($elm$html$Html$Attributes$style, 'font-size', '4em')
 								]),
 							$elm$core$String$fromInt(
-								$elm$core$Basics$round(args.solved - 16))),
-							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'bonus levels.')
+								$elm$core$Basics$round(8 - args.solved))),
+							A2($Orasund$elm_layout$Layout$text, _List_Nil, 'more bonus levels.')
 						])),
 					A2(
 					$Orasund$elm_layout$Layout$textButton,
@@ -6323,22 +6323,16 @@ var $elm$core$Set$size = function (_v0) {
 	var dict = _v0.a;
 	return $elm$core$Dict$size(dict);
 };
-var $elm$html$Html$Attributes$href = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'href',
-		_VirtualDom_noJavaScriptUri(url));
+var $elm$core$List$singleton = function (value) {
+	return _List_fromArray(
+		[value]);
 };
-var $elm$html$Html$Attributes$rel = _VirtualDom_attribute('rel');
 var $author$project$View$stylesheet = A3(
 	$elm$html$Html$node,
-	'link',
-	_List_fromArray(
-		[
-			$elm$html$Html$Attributes$rel('stylesheet'),
-			$elm$html$Html$Attributes$href('style.css')
-		]),
-	_List_Nil);
+	'style',
+	_List_Nil,
+	$elm$core$List$singleton(
+		$elm$html$Html$text('\n    :root {\n    height: 100%;\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    --rounded-edges: 1rem;\n    --space: 1rem;\n    --big-space: 2rem;\n    font-family: Verdana, Geneva, Tahoma, sans-serif;\n    --dark-color: #6b184e;\n    --primary-color: #eb332b;\n    --secondary-color: #f4a128;\n    --light-color: #fdfcfc;\n}\n\n.light-theme {\n    --background-color: var(--light-color);\n    --screen-color: var(--dark-color);\n}\n\n.dark-theme {\n    --background-color: var(--dark-color);\n    --screen-color: var(--light-color);\n}\n\nbody {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n\n#screen {\n    background-color: var(--screen-color);\n    border-radius: var(--rounded-edges);\n    box-sizing: border-box;\n    padding: var(--space);\n    color: var(--background-color);\n    justify-content: end;\n    width: 100%;\n    font-family: \'Courier New\', Courier, monospace;\n    font-size: 4rem;\n}\n\n.broken1 {\n    position: absolute;\n    left: 1px;\n    top: 5px;\n    clip-path: path(\'M0 0 L400 0 L 0 600 Z\');\n    width: 100%;\n    animation-name: flimmer;\n    animation-duration: 5s;\n    animation-iteration-count: infinite;\n\n}\n\n.broken2 {\n    position: absolute;\n    left: 0px;\n    top: 0px;\n    clip-path: path(\'M400 600 L400 0 L 0 600 Z\');\n    width: 100%;\n    filter: saturate(0.7);\n}\n\n#container {\n    height: 600px;\n    width: 400px;\n    gap: 20px;\n    border-radius: var(--rounded-edges);\n    position: relative;\n    left: 0px;\n    padding: var(--space);\n    color: var(--screen-color);\n}\n\n.info-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    width: 100%;\n}\n\n.button-row {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    gap: 20px;\n    width: 100%;\n}\n\n.column {\n    display: flex;\n    flex-direction: column;\n    gap: var(--space);\n    width: 100%;\n    align-items: center;\n}\n\nbutton {\n    background-color: var(--light-color);\n    border-style: solid;\n    border-color: color-mix(in lab, var(--light-color), black 10%);\n    border-width: 1px 1px 0.5rem 1px;\n    border-radius: var(--rounded-edges);\n    padding: var(--space);\n    width: 190px;\n    height: 90px;\n    font-size: 2rem;\n    color: var(--dark-color);\n}\n\n.no-button {\n    width: 190px;\n    height: 90px;\n}\n\nbutton:hover {\n    border-width: 0.125rem 1px 0.375rem 1px;\n}\n\nbutton:active {\n    border-width: 0.5rem 1px 1px 1px;\n}\n\nbutton:disabled {\n    border-width: 0.25rem 1px 0.25rem 1px;\n    background-color: color-mix(in lab, var(--background-color), black 10%);\n    border-color: color-mix(in lab, var(--background-color), black 10%);\n    color: color-mix(in lab, var(--background-color), black 30%);\n}\n\n.primary {\n    background-color: var(--primary-color);\n    border-color: color-mix(in lab, var(--primary-color), black 10%);\n    color: var(--light-color);\n}\n\n.secondary {\n    background-color: var(--secondary-color);\n    border-color: color-mix(in lab, var(--secondary-color), black 10%);\n    color: var(--light-color);\n}\n\n#overlay {\n    transition: clip-path 3s;\n    /*transition-timing-function: ease-in;*/\n    clip-path: circle(0%);\n    background-color: color-mix(in lab, var(--dark-color), black 10%);\n    height: 100%;\n    width: 100%;\n    color: var(--light-color);\n    position: absolute;\n    top: 0;\n    gap: var(--big-space)\n}\n\n.game-won {\n    clip-path: circle(75%) !important;\n}\n\n.shaking {\n    animation-name: shake;\n    animation-duration: 0.2s;\n    animation-iteration-count: infinite;\n}\n\n@keyframes flimmer {\n\n    0%,\n    89%,\n    100% {\n        filter: saturate(1.5);\n    }\n\n    90%,\n    99% {\n        filter: saturate(0.7);\n    }\n\n}\n\n@keyframes shake {\n    0% {\n        left: 0;\n    }\n\n    25% {\n        left: -8px;\n    }\n\n    75% {\n        left: 8px;\n    }\n\n    100% {\n        left: 0px;\n    }\n}\n    ')));
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
 };
